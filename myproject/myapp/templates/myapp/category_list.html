@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+<h2>Categories</h2>
+<a href="{% url 'category-add' %}">Add Category</a>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Group</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.name }}</td>
+            <td>{{ category.group.name }}</td>
+            <td>
+                <a href="{% url 'category-edit' category.id %}">Edit</a>
+                <a href="{% url 'category-delete' category.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
